@@ -31,8 +31,8 @@ p.b {
   <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a> 
   <a  href="userlogin" style="float: right;"><i class="fa fa-fw fa-user"></i>User Login</a>
   <a  href="managerlogin" style="float: right;"><i class="fa fa-fw fa-user"></i>Manager Login</a>
-  <a  href="login" style="float: right;"><i class="fa fa-fw fa-user"></i>Engineer Login</a>
-  <a  href="login" style="float: right;"><i class="fa fa-fw fa-user"></i>Admin Login</a>
+  <a  href="engineerlogin" style="float: right;"><i class="fa fa-fw fa-user"></i>Engineer Login</a>
+  <a  href="adminlogin" style="float: right;"><i class="fa fa-fw fa-user"></i>Admin Login</a>
 </div>
 
 <div class="block">
