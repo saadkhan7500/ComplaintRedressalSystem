@@ -31,6 +31,6 @@ public class AdminController {
 	  else
 		  return "error";
   }
-	
-
+  
+ 
 }

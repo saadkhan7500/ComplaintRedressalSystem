@@ -1,7 +1,10 @@
 package com.ComplaintRedressalSystem.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,5 +55,13 @@ public class UserController {
 		userService.addUser(user);
 		return "userprofle";
 	}
+	
+	 @RequestMapping(value = "allusers" , method = RequestMethod.GET)
+	  public String allUser(Model model)
+	  {
+		  List<User> users=userService.allUsers();
+		  model.addAttribute("users", users);
+		  return "allusers";
+	  }
 
 }
