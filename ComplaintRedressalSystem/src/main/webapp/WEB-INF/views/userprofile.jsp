@@ -108,11 +108,12 @@ section:after {
 		<a href="index.html"><i class="fa fa-fw fa-home"></i> Home</a> <a
 			href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a> <a
 			class="active" href="profile.jsp"><i class="fa fa-fw fa-user"></i>Profile</a>
-		<a href="index.html" style="float: right;"><i
+		<a href="index" style="float: right;"><i
 			class="fa fa-sign-out"></i>Logout</a>
 	</div>
 
 	<section> <nav>
+	<center><h2>User</h2></center>
 	<center>
 		<i class="fa fa-user-circle-o"
 			style="font-size: 100px; color: #FE9800"></i>

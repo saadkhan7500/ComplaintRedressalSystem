@@ -21,7 +21,7 @@
 	</div>
 
 	<div class="card" >
-			<center><h2><b>Login</b></h2></center>
+			<center><h2><b>Engineer Login</b></h2></center>
 			<form action="CheckLogin" method="post" class="w3-container">
 			
 				Username<input class="w3-input" type="text" name="uname" required><br>
@@ -30,7 +30,7 @@
 				<br/>
 				<input type="submit" class="button" value="Login"/>  			
 			</form>
-			<p style="text-align: center;">New to Portal ? <a href="signup" style="color:#FE9800;">Register</a></p>
+			<p style="text-align: center;">New to Portal ? <a href="engineersignup" style="color:#FE9800;">Register</a></p>
 	 </div>
 
 

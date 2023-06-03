@@ -1,6 +1,8 @@
 package com.ComplaintRedressalSystem.controller;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ComplaintRedressalSystem.model.User;
 import com.ComplaintRedressalSystem.service.UserService;
@@ -53,7 +56,7 @@ public class UserController {
 	public String addUser(@ModelAttribute User user)
 	{
 		userService.addUser(user);
-		return "userprofle";
+		return "userprofile";
 	}
 	
 	 @RequestMapping(value = "allusers" , method = RequestMethod.GET)
@@ -63,5 +66,24 @@ public class UserController {
 		  model.addAttribute("users", users);
 		  return "allusers";
 	  }
+	 
+	 
+	 @RequestMapping(value = "checkuserlogin" ,method = RequestMethod.POST)
+	 public String checkUerLogin(Model model,@RequestParam("email")String email,@RequestParam("password")String password)
+	 {
+		 
+		 List<User> users=userService.allUsers();
+		 User user =users.stream()
+		 .filter(e->e.getEmail().equalsIgnoreCase(email) && e.getPassword().equalsIgnoreCase(password))
+		 .findFirst()
+		 .orElse(null);
+		 
+		 System.out.println(user);
+		 model.addAttribute("user", user);
+		 if(user!=null)
+		 return "userprofile";
+		 else
+			 return "error"; 
+	 }
 	 
 }

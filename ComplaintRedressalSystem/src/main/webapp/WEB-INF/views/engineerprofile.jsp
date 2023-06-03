@@ -2,8 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 	
 <%@page isELIgnored="false" %>
-<%@taglib prefix="c" uri= "http://java.sun.com/jsp/jstl/core"%>
 
+<%@taglib prefix="c" uri= "http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -113,20 +113,21 @@ section:after {
 	</div>
 
 	<section> <nav>
+	<center><h2>Engineer</h2></center>
 	<center>
 		<i class="fa fa-user-circle-o"
 			style="font-size: 100px; color: #FE9800"></i>
 	</center>
 	<center>
 		<p>
-			+91 7500495652</p>
+			+91 ${engineer.phone }</p>
 		<p>
 			<i class="fa fa-address-card"
 				style="font-size: 20px; margin-right: 10px;"></i>
-			Admin</p>
+			${engineer.name }</p>
 		<p>
 			<i class="fa fa-envelope"
-				style="font-size: 20px; margin-right: 10px;"></i>admin123@gmail.com</p>
+				style="font-size: 20px; margin-right: 10px;"></i>${engineer.email }</p>
 
 
 	</center>
@@ -136,37 +137,14 @@ section:after {
 			<a href="allmanagers" id="sidbutton"><i class="fa fa fa-user"
 		style="font-size: 20px; margin-right: 10px;"></i>All Manager</a>
 		
-			<a href="allengineers" id="sidbutton"><i class="fa fa fa-user"
+			<a href="allengineer" id="sidbutton"><i class="fa fa fa-user"
 		style="font-size: 20px; margin-right: 10px;"></i>All Engineer</a>
 	<br>
 	<br>
  </nav> 
-  <article>
-
-	<h2>All Users</h2>
+ <article>
 	<br>
-	<div class="w3-container">
-		<table class="w3-table w3-bordered">
-			<tr style="color: #FE9800;">
-				<th>id</th>
-				<th>Name</th>
-				<th>Email</th>
-				<th>Phone</th>
-				<th>Action</th>
-			</tr>
- 
-			  <c:forEach var="user" items="${users}">
-			     <tr>
-                 <td>${user.id}</td>
-                 <td>${user.name}</td>
-                 <td>${user.email}</td>
-                 <td>${user.phone}</td>
-                 <td><a href="#"><button class="button button2"><i class="fa fa-trash" style="font-size:20px;"></i></button></a></td>
-                 
-                 </tr> 
-              </c:forEach>
-
-		</table>
+	
 	</div>
 	</article> </section>
 

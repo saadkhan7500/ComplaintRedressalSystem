@@ -108,7 +108,7 @@ section:after {
 		<a href="index.html"><i class="fa fa-fw fa-home"></i> Home</a> <a
 			href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a> <a
 			class="active" href="profile.jsp"><i class="fa fa-fw fa-user"></i>Profile</a>
-		<a href="index.html" style="float: right;"><i
+		<a href="index" style="float: right;"><i
 			class="fa fa-sign-out"></i>Logout</a>
 	</div>
 
@@ -133,10 +133,10 @@ section:after {
 	<a href="allusers" id="sidbutton"><i class="fa fa fa-user"
 		style="font-size: 20px; margin-right: 10px;"></i>All User</a>
 		
-			<a href="allmanager" id="sidbutton"><i class="fa fa fa-user"
+			<a href="allmanagers" id="sidbutton"><i class="fa fa fa-user"
 		style="font-size: 20px; margin-right: 10px;"></i>All Manager</a>
 		
-			<a href="allengineer" id="sidbutton"><i class="fa fa fa-user"
+			<a href="allengineers" id="sidbutton"><i class="fa fa fa-user"
 		style="font-size: 20px; margin-right: 10px;"></i>All Engineer</a>
 	<br>
 	<br>
@@ -157,10 +157,10 @@ section:after {
  
 			  <c:forEach var="manager" items="${managers}">
 			     <tr>
-                 <td>${user.id}</td>
-                 <td>${user.name}</td>
-                 <td>${user.email}</td>
-                 <td>${user.phone}</td>
+                 <td>${manager.id}</td>
+                 <td>${manager.name}</td>
+                 <td>${manager.email}</td>
+                 <td>${manager.phone}</td>
                  <td><a href="#"><button class="button button2"><i class="fa fa-trash" style="font-size:20px;"></i></button></a></td>
                  
                  </tr> 

@@ -113,6 +113,7 @@ section:after {
 	</div>
 
 	<section> <nav>
+	<center><h2>Manager</h2></center>
 	<center>
 		<i class="fa fa-user-circle-o"
 			style="font-size: 100px; color: #FE9800"></i>

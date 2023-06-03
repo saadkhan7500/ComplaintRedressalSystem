@@ -155,12 +155,12 @@ section:after {
 				<th>Action</th>
 			</tr>
  
-			  <c:forEach var="user" items="${users}">
+			  <c:forEach var="engineer" items="${engineers}">
 			     <tr>
-                 <td>${user.id}</td>
-                 <td>${user.name}</td>
-                 <td>${user.email}</td>
-                 <td>${user.phone}</td>
+                 <td>${engineer.id}</td>
+                 <td>${engineer.name}</td>
+                 <td>${engineer.email}</td>
+                 <td>${engineer.phone}</td>
                  <td><a href="#"><button class="button button2"><i class="fa fa-trash" style="font-size:20px;"></i></button></a></td>
                  
                  </tr> 

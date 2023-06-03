@@ -22,11 +22,11 @@
 
 	<div class="card" >
 			<center><h2><b>User Login</b></h2></center>
-			<form action="CheckLogin" method="post" class="w3-container">
+			<form action="checkuserlogin" method="post" class="w3-container">
 			
-				Username<input class="w3-input" type="text" name="uname" required><br>
+				Username<input class="w3-input" type="text" name="email" required><br>
 				<br/> 
-				Password<input class="w3-input" type="password" name="pass" required><br>
+				Password<input class="w3-input" type="password" name="password" required><br>
 				<br/>
 				<input type="submit" class="button" value="Login"/>  			
 			</form>
