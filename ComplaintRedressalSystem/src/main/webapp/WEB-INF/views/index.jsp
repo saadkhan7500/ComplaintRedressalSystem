@@ -29,7 +29,10 @@ p.b {
 <div class="navbar">
   <a  class="active" href="index.html"><i class="fa fa-fw fa-home"></i> Home</a> 
   <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a> 
-  <a  href="login" style="float: right;"><i class="fa fa-fw fa-user"></i>Login</a>
+  <a  href="userlogin" style="float: right;"><i class="fa fa-fw fa-user"></i>User Login</a>
+  <a  href="managerlogin" style="float: right;"><i class="fa fa-fw fa-user"></i>Manager Login</a>
+  <a  href="login" style="float: right;"><i class="fa fa-fw fa-user"></i>Engineer Login</a>
+  <a  href="login" style="float: right;"><i class="fa fa-fw fa-user"></i>Admin Login</a>
 </div>
 
 <div class="block">

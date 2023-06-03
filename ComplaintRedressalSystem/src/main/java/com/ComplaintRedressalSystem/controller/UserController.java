@@ -27,16 +27,16 @@ public class UserController {
 		return "index";
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping("/userlogin")
 	public String login()
 	{
-		return "login";
+		return "userlogin";
 	}
 	
-	@RequestMapping("/signup")
+	@RequestMapping("/usersignup")
 	public String signup()
 	{
-		return "signup";
+		return "usersignup";
 	}
 
 	
@@ -50,7 +50,7 @@ public class UserController {
 	public String addUser(@ModelAttribute User user)
 	{
 		userService.addUser(user);
-		return "profle";
+		return "userprofle";
 	}
 
 }

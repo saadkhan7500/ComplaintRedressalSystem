@@ -22,7 +22,7 @@
 </div>
 
 <div class="card" >
-		<center><h2><b>Singup</b></h2></center>
+		<center><h2><b>User Singup</b></h2></center>
 		<form  action="addUser" method="post" class="w3-container"> 
             Name<input class="w3-input" type="text" name="name" required />
 			<br/> 
@@ -30,11 +30,11 @@
 			<br/> 
             Phone<input class="w3-input" type="text" name="phone" required /><br>
 			<br/> 
-            Password<input class="w3-input" type="password" name="pass" required /><br>
+            Password<input class="w3-input" type="password" name="password" required /><br>
             <br/>
 			<input type="submit" class="button" value="Register"/>  			
         </form>
-		<p style="text-align: center;">Already have an account? <a href="login" style="color:#FE9800;">Sign in</a></p>
+		<p style="text-align: center;">Already have an account? <a href="userlogin" style="color:#FE9800;">Sign in</a></p>
  </div>
 
           <li></li>

@@ -54,6 +54,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.ComplaintRedressalSystem.model.User</value>
+				<value>com.ComplaintRedressalSystem.model.Manager</value>
 			</list>
 		</property>
 
