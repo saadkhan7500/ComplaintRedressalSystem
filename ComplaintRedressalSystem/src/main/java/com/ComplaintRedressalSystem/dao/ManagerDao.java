@@ -1,5 +1,7 @@
 package com.ComplaintRedressalSystem.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,10 @@ public class ManagerDao {
 	public int addManager(Manager manager)
 	{
 		return (Integer)hibernateTemplate.save(manager);
+	}
+
+	public List<Manager> allManagers() {
+		return hibernateTemplate.loadAll(Manager.class);
 	}
 
 }

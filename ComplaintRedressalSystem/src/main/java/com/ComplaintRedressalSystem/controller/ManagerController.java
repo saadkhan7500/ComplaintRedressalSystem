@@ -1,7 +1,10 @@
 package com.ComplaintRedressalSystem.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,5 +39,12 @@ public class ManagerController {
 		managerService.addManager(manager);
 		return "managerprofle";
 	}
+	
+	 @RequestMapping(value = "allmanagers", method = RequestMethod.GET)
+	 public String allManagers(Model model)
+	 {
+		 List<Manager> managers = managerService.allManagers(); 
+		 return "allmanagers";
+	 }
 
 }

@@ -133,7 +133,7 @@ section:after {
 	<a href="allusers" id="sidbutton"><i class="fa fa fa-user"
 		style="font-size: 20px; margin-right: 10px;"></i>All User</a>
 		
-			<a href="allmanager" id="sidbutton"><i class="fa fa fa-user"
+			<a href="allmanagers" id="sidbutton"><i class="fa fa fa-user"
 		style="font-size: 20px; margin-right: 10px;"></i>All Manager</a>
 		
 			<a href="allengineer" id="sidbutton"><i class="fa fa fa-user"

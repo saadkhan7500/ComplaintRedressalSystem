@@ -155,7 +155,7 @@ section:after {
 				<th>Action</th>
 			</tr>
  
-			  <c:forEach var="user" items="${users}">
+			  <c:forEach var="manager" items="${managers}">
 			     <tr>
                  <td>${user.id}</td>
                  <td>${user.name}</td>
