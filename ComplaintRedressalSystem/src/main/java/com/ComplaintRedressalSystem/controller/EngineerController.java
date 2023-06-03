@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ComplaintRedressalSystem.model.Engineer;
 import com.ComplaintRedressalSystem.model.User;
@@ -47,5 +48,24 @@ public class EngineerController {
 		  model.addAttribute("engineers", engineers);
 		  return "allengineers";
 	  }
+	 
+	 @RequestMapping(value = "checkengineerlogin" , method=RequestMethod.POST)
+	 public String checkEngineerLogin(@RequestParam("email")String email, 
+			                          @RequestParam("password")String password,
+			                          Model model)
+	 {
+		 List<Engineer> engineers=engineerService.allEngineers();
+		 Engineer engineer=engineers.stream()
+				           .filter(e->e.getEmail().equalsIgnoreCase(email) && e.getPassword().equalsIgnoreCase(password))
+				           .findFirst()
+				           .orElse(null);
+		 if(engineer!=null)
+		 {
+		 model.addAttribute("engineer", engineer);
+		 return "engineerprofile";
+		 }
+		 else
+			 return "error";
+	 }
 	 
 }
