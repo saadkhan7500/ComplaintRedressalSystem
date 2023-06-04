@@ -94,12 +94,9 @@ public class UserController {
 		 if(user!=null)
 		 {
 			    session.setAttribute("user", user);
-			  	User u=(User)session.getAttribute("user");
-				System.out.println("inside checkuserlogin Handler "+u);
 		        return "userprofile";
 		 }
 		 else
 			 return "error"; 
 	 }
-	  
 }

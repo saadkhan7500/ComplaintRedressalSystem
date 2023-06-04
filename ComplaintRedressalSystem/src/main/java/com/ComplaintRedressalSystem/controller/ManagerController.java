@@ -2,6 +2,8 @@ package com.ComplaintRedressalSystem.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,9 +37,10 @@ public class ManagerController {
 	}
 
 	@RequestMapping(value = "addManager" , method = RequestMethod.POST)
-	public String addManager(@ModelAttribute Manager manager)
+	public String addManager(@ModelAttribute Manager manager, HttpSession session)
 	{
 		managerService.addManager(manager);
+		session.setAttribute("manager", manager);
 		return "managerprofle";
 	}
 	
@@ -52,7 +55,8 @@ public class ManagerController {
 	 @RequestMapping(value = "checkmanagerlogin" , method = RequestMethod.POST)
 	 public String checkManagerLogin(Model model,
 			                         @RequestParam("email")String email,
-			                         @RequestParam("password")String password)
+			                         @RequestParam("password")String password,
+			                         HttpSession session)
 	 {
 		 List<Manager> managers = managerService.allManagers();
 		 Manager manager =managers.stream()
@@ -61,7 +65,10 @@ public class ManagerController {
 				          .orElse(null);
 		 model.addAttribute("manager", manager);
 		 if(manager!=null)
-		 return "managerprofle";
+		 {
+			 session.setAttribute("manager", manager);
+		     return "managerprofle";
+		 }
 		 else
 			 return "error";
 	 }

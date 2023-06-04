@@ -2,8 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 	
 <%@page isELIgnored="false" %>
-
 <%@taglib prefix="c" uri= "http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -111,7 +111,7 @@ section:after {
 		<a href="index" style="float: right;"><i
 			class="fa fa-sign-out"></i>Logout</a>
 	</div>
-<c:set var="manager" value="${sessionScope.manager}" />
+
 	<section> <nav>
 	<center><h2>Manager</h2></center>
 	<center>
@@ -137,12 +137,44 @@ section:after {
 	<a href="allcomplaints" id="sidbutton" class="badge1"
 		data-badge=<%-- <%=resultSet1.getString("count(*)")%> --%>><i
 		class="fa fa fa-clipboard"
-		style="font-size: 20px; margin-right: 10px;"></i>All Complaints</a> </nav> <article>
+		style="font-size: 20px; margin-right: 10px;"></i>All Complaints</a> </nav> 
+  <article>
 
-	
+	<h2>All Complaints</h2>
 	<br>
 	<div class="w3-container">
-	
+		<table class="w3-table w3-bordered">
+			<tr style="color: #FE9800;">
+				<th>ID</th>
+				<th>User ID</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Engineer ID</th>
+				<th>User FeedBack</th>
+				<th>Status</th>
+				<th>Action</th>
+			</tr>
+ 
+			  <c:forEach var="complaint" items="${complaints}">
+			     <tr>
+	                 <td>${complaint.id}</td>
+	                 <td>${complaint.uid}</td>
+	                 <td>${complaint.title}</td>
+	                 <td>${complaint.description}</td>
+	                 <td><select name="eid" id="eid" class="form-select" aria-label="Default select example">
+	                        <option value="eid">${complaint.eid}</option>
+	                        <c:forEach var="manager" items="${managers}">
+					          <option value="eid">${manager.id}</option>
+					        </c:forEach>
+				          </select>
+				     </td>
+	                 <td>${complaint.userfeedback}</td>
+	                 <td>${complaint.status}</td>
+	                 <td><a href="#"><button class="button button2"><i class="fa fa-trash" style="font-size:20px;"></i></button></a></td>
+                 </tr> 
+              </c:forEach>
+
+		</table>
 	</div>
 	</article> </section>
 

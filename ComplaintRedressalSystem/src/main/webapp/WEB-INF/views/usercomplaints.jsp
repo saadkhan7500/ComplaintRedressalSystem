@@ -1,33 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page import="java.sql.*" %>
-<%@ page import="java.io.*" %>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="javax.servlet.http.HttpSession"%>
-<%
+<%@page isELIgnored="false" %>
 
-String id = request.getParameter("id");
-String driver = "com.mysql.cj.jdbc.Driver";
-String connectionUrl = "jdbc:mysql://localhost:3306/";
-String database = "complaintportal";
-String userid = "root";
-String password = "mysql";
-try {
-Class.forName(driver);
-} catch (ClassNotFoundException e) {
-e.printStackTrace();
-}
-Connection connection = null;
-Statement statement = null;
-ResultSet resultSet = null;
-ResultSet resultSet1 = null;
-connection = DriverManager.getConnection(connectionUrl+database, userid, password);
-statement=connection.createStatement();
-String un = (String) session.getAttribute("uname");
-%>
+<%@taglib prefix="c" uri= "http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
 <head>
 <title>CSS Template</title>
@@ -125,28 +100,43 @@ section:after {
 </style>
 </head>
 <body>
-<div class="navbar">
-  <a href="index.html"><i class="fa fa-fw fa-home"></i> Home</a> 
-  <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
-  <a class="active" href="profile.jsp"><i class="fa fa-fw fa-user"></i>Profile</a>
-  <a  href="index.html" style="float: right;"><i class="fa fa-sign-out"></i>Logout</a>
-</div>
+	<div class="navbar">
+		<a href="index"><i class="fa fa-fw fa-home"></i> Home</a> <a
+			href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a> <a
+			class="active" href="profile.jsp"><i class="fa fa-fw fa-user"></i>Profile</a>
+		<a href="logout" style="float: right;"><i
+			class="fa fa-sign-out"></i>Logout</a>
+	</div>
+  <c:set var="user" value="${sessionScope.user}" />
+  
+	<section> <nav>
+	<center><h2>User</h2></center>
+	<center>
+		<i class="fa fa-user-circle-o"
+			style="font-size: 100px; color: #FE9800"></i>
+	</center>
+	<center>
+		<p>
+			+91 ${user.phone }</p>
+		<p>
+			<i class="fa fa-address-card"
+				style="font-size: 20px; margin-right: 10px;"></i>
+			${user.name }</p>
+		<p>
+			<i class="fa fa-envelope"
+				style="font-size: 20px; margin-right: 10px;"></i>${user.email }</p>
 
-<section>
-  <nav>
-      <center><i class="fa fa-user-circle-o" style="font-size:100px;color:#FE9800"></i></center>
-      <center><p>@<%=un%></p>
-      <%resultSet1 = statement.executeQuery("select count(*),user.name,user.email from user,post where user.uname='"+un+"' and post.uname='"+un+"'");
-      while(resultSet1.next()){%>
-      <p><i class="fa fa-address-card" style="font-size: 20px;margin-right: 10px;"></i> <%=resultSet1.getString("name")%></p>
-      <p><i class="fa fa-envelope" style="font-size: 20px;margin-right: 10px;"></i> <%=resultSet1.getString("email")%></p>
-      <p>No. Of Complaints: <%=resultSet1.getString("count(*)")%></p>
-      <%}%>
-      </center>
-      <a href="addpost.html" id="sidbutton"><i class="fa fa fa-pencil" style="font-size: 20px;margin-right: 10px;"></i>Register Complaint</a><br><br>
-      
-      <a href="profile.jsp" id="sidbutton"><i class="fa fa fa-list-ul" style="font-size: 20px;margin-right: 10px;"></i>All Complaints</a>
-  </nav>
+
+	</center>
+	<a href="complaintForm?id=${user.id}" id="sidbutton"><i class="fa fa fa-pencil"
+		style="font-size: 20px; margin-right: 10px;"></i>Register Complaint</a>
+	<br>
+	<br>
+
+	<a href="usercomplaints?id=${user.id}" id="sidbutton" class="badge1"
+		data-badge=<%-- <%=resultSet1.getString("count(*)")%> --%>><i
+		class="fa fa fa-clipboard"
+		style="font-size: 20px; margin-right: 10px;"></i>My Complaints</a> </nav>
   
   <article>
     <h2>All Complaints</h2>
@@ -156,36 +146,22 @@ section:after {
             <tr style="color:#FE9800;">
               <th>id</th>
               <th>Title</th>
-              <th>Department</th>
-              <th>Faculty</th>
               <th>Description</th>
+              <th>Engineer ID</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
 			
-			<%
-			try{
-			
-			String sql ="select * from post where uname="+"'"+un+"'";
-			resultSet = statement.executeQuery(sql);
-			while(resultSet.next()){
-			%>
-			<tr>
-				
-			<td><%=resultSet.getString("uid") %></td>
-			<td><%=resultSet.getString("title") %></td>
-			<td><%=resultSet.getString("deptName") %></td>
-			<td><%=resultSet.getString("facultyName") %></td>
-			<td><%=resultSet.getString("description") %></td>
-			<td><a href="update.jsp?id=<%=resultSet.getString("uid")%>"><button class="button"><i class="fa fa-pencil-square-o" style="font-size:20px;"></i></button></a>
-			<a href="delete.jsp?id=<%=resultSet.getString("uid")%>"><button class="button button2"><i class="fa fa-trash" style="font-size:20px;"></i></button></a></td>
+			<c:forEach var="usercomplaint" items="${usercomplaints}">
+			<tr>	
+			<td>${usercomplaint.id}</td>
+			<td>${usercomplaint.title}</td>
+			<td>${usercomplaint.description}</td>
+			<td>${usercomplaint.eid}</td>
+			<td>${usercomplaint.status}</td>
+			<td><a href="delete.jsp?id="><button class="button button2"><i class="fa fa-trash" style="font-size:20px;"></i></button></a></td>
 			</tr>
-			<%
-			}
-			connection.close();
-			} catch (Exception e) {
-			e.printStackTrace();
-			}
-			%>
+			</c:forEach>
           
             
           </table>

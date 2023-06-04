@@ -1,5 +1,7 @@
 package com.ComplaintRedressalSystem.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -17,5 +19,10 @@ public class ComplaintDao {
 	public int addComplaint(Complaint complaint)
 	{
 		return (Integer)hibernateTemplate.save(complaint);
+	}
+	
+	public List<Complaint> allComplaints()
+	{
+		return this.hibernateTemplate.loadAll(Complaint.class);
 	}
 }
