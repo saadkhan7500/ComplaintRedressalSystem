@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="org.hibernate.internal.build.AllowSysOut"%>
 <html>
 <head>
         <title>TODO supply a title</title>
@@ -50,17 +51,19 @@
   <a href="index" style="float: right;"><i class="fa fa-sign-out"></i>Logout</a>
 </div>
 
+<%
+  String id=request.getParameter("id");
+%>
+
 <div class="card" style="margin-top:20px;">
 	<center><h2><b>Register Complaint</b></h2></center>
-	<form action="InsertPost" method="post" class="w3-container">       
+	<form action="addComplaint" method="post" class="w3-container"> 
+	        User ID<input class="w3-input" type="text" name="uid" value="<%=id %>" readonly="readonly"><br/>       
             Title<input class="w3-input" type="text" name="title" required><br/> 
-            Department<input class="w3-input" type="text" name="dept" required><br>
-            Person<input class="w3-input" type="text" name="person"/><br>			
             Description
-            <textarea id="subject" name="descr" placeholder="Write something.." style="height:200px; width:100%;resize: vertical;" required></textarea>
-            <input type="submit" class="button" value="Submit Complaint"/> 
-            
-        </form>
+            <textarea id="subject" name="description" placeholder="Write something.." style="height:200px; width:100%;resize: vertical;" required></textarea>
+            <input type="submit" class="button" value="Submit Complaint"/>   
+    </form>
  </div>
 </body>
 </html>

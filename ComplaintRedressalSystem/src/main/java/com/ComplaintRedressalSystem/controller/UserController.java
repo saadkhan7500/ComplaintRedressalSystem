@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,6 +47,12 @@ public class UserController {
 		return "usersignup";
 	}
 
+	@RequestMapping("/logout")
+	public String logout(HttpSession session)
+	{
+		session.invalidate();
+		return "index";
+	}
 	
 	@RequestMapping("/complaintForm")
 	public String complaintForm()
@@ -53,23 +61,29 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "addUser" , method = RequestMethod.POST)
-	public String addUser(@ModelAttribute User user)
+	public String addUser(@ModelAttribute User user , HttpSession session)
 	{
 		userService.addUser(user);
+		session.setAttribute("user", user);
+		User u=(User)session.getAttribute("user");
+		System.out.println("inside addUser Handler "+u);
 		return "userprofile";
 	}
 	
 	 @RequestMapping(value = "allusers" , method = RequestMethod.GET)
-	  public String allUser(Model model)
-	  {
+	 public String allUser(Model model)
+	 {
 		  List<User> users=userService.allUsers();
 		  model.addAttribute("users", users);
 		  return "allusers";
-	  }
+	 }
 	 
 	 
 	 @RequestMapping(value = "checkuserlogin" ,method = RequestMethod.POST)
-	 public String checkUerLogin(Model model,@RequestParam("email")String email,@RequestParam("password")String password)
+	 public String checkUerLogin(Model model,
+			                     @RequestParam("email")String email,
+			                     @RequestParam("password")String password,
+			                     HttpSession session)
 	 {
 		 
 		 List<User> users=userService.allUsers();
@@ -77,13 +91,15 @@ public class UserController {
 		 .filter(e->e.getEmail().equalsIgnoreCase(email) && e.getPassword().equalsIgnoreCase(password))
 		 .findFirst()
 		 .orElse(null);
-		 
-		 System.out.println(user);
-		 model.addAttribute("user", user);
 		 if(user!=null)
-		 return "userprofile";
+		 {
+			    session.setAttribute("user", user);
+			  	User u=(User)session.getAttribute("user");
+				System.out.println("inside checkuserlogin Handler "+u);
+		        return "userprofile";
+		 }
 		 else
 			 return "error"; 
 	 }
-	 
+	  
 }

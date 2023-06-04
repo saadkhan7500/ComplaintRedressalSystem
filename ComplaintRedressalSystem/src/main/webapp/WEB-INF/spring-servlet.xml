@@ -56,6 +56,7 @@
 				<value>com.ComplaintRedressalSystem.model.User</value>
 				<value>com.ComplaintRedressalSystem.model.Manager</value>
 				<value>com.ComplaintRedressalSystem.model.Engineer</value>
+				<value>com.ComplaintRedressalSystem.model.Complaint</value>
 			</list>
 		</property>
 

@@ -8,8 +8,7 @@
 <body>
     <form action="logout">
         <input type="submit" value="Logout">
-    </form>
-    
+    </form> 
     <br>
     <h3>Post Complaint</h3>
     <a href="addpost.html"> add post</a>

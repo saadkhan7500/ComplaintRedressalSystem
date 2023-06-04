@@ -105,13 +105,13 @@ section:after {
 </head>
 <body>
 	<div class="navbar">
-		<a href="index.html"><i class="fa fa-fw fa-home"></i> Home</a> <a
+		<a href="index"><i class="fa fa-fw fa-home"></i> Home</a> <a
 			href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a> <a
 			class="active" href="profile.jsp"><i class="fa fa-fw fa-user"></i>Profile</a>
-		<a href="index" style="float: right;"><i
+		<a href="logout" style="float: right;"><i
 			class="fa fa-sign-out"></i>Logout</a>
 	</div>
-
+  <c:set var="user" value="${sessionScope.user}" />
 	<section> <nav>
 	<center><h2>User</h2></center>
 	<center>
@@ -131,38 +131,16 @@ section:after {
 
 
 	</center>
-	<a href="complaintForm" id="sidbutton"><i class="fa fa fa-pencil"
+	<a href="complaintForm?id=${user.id}" id="sidbutton"><i class="fa fa fa-pencil"
 		style="font-size: 20px; margin-right: 10px;"></i>Register Complaint</a>
 	<br>
 	<br>
 
-	<a href="mycomplaints.jsp" id="sidbutton" class="badge1"
+	<a href="usercomplaints?id=${user.id}" id="sidbutton" class="badge1"
 		data-badge=<%-- <%=resultSet1.getString("count(*)")%> --%>><i
 		class="fa fa fa-clipboard"
 		style="font-size: 20px; margin-right: 10px;"></i>My Complaints</a> </nav> <article>
 
-	<h2>All Complaints</h2>
-	<br>
-	<div class="w3-container">
-		<table class="w3-table w3-bordered">
-			<tr style="color: #FE9800;">
-				<th>id</th>
-				<th>Title</th>
-				<th>Department</th>
-				<th>Faculty</th>
-				<th>Description</th>
-			</tr>
-
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-
-		</table>
-	</div>
 	</article> </section>
 
 </body>
