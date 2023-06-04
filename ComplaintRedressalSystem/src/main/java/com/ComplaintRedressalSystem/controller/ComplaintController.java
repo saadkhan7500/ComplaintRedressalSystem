@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ComplaintRedressalSystem.dao.ComplaintDao;
 import com.ComplaintRedressalSystem.model.Complaint;
+import com.ComplaintRedressalSystem.model.Engineer;
 import com.ComplaintRedressalSystem.model.Manager;
 import com.ComplaintRedressalSystem.service.ComplaintService;
+import com.ComplaintRedressalSystem.service.EngineerService;
 import com.ComplaintRedressalSystem.service.ManagerService;
 
 
@@ -24,7 +27,8 @@ public class ComplaintController {
 	private ComplaintService complaintService;
 	
 	@Autowired
-	private ManagerService managerService;
+	private EngineerService engineerService;
+	
 	
 	@RequestMapping(value = "addComplaint" , method = RequestMethod.POST)
 	public String addManager(@ModelAttribute Complaint complaint)
@@ -55,9 +59,22 @@ public class ComplaintController {
 	 {
 		 List<Complaint> complaints = complaintService.allComplaints();
 		 model.addAttribute("complaints", complaints);
+		 model.addAttribute("size", complaints.size());
 		 
-		 List<Manager> managers = managerService.allManagers();
-		 model.addAttribute("managers", managers);
+		 List<Engineer> engineers = engineerService.allEngineers();
+		 model.addAttribute("engineers", engineers);
+		 return "allcomplaints";
+	 }
+	 
+	 @RequestMapping(value = "editcomplaint" , method=RequestMethod.GET)
+	 public String editComplaint(@RequestParam("uid")int uid,
+			                     @RequestParam("eid")int eid,
+			                     Model model)
+	 {
+		 complaintService.editComplaint(uid,eid);
+		 List<Complaint> complaints = complaintService.allComplaints();
+		 model.addAttribute("complaints", complaints);
+		 model.addAttribute("size", complaints.size());
 		 return "allcomplaints";
 	 }
 }

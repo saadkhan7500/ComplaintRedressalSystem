@@ -41,7 +41,7 @@ public class ManagerController {
 	{
 		managerService.addManager(manager);
 		session.setAttribute("manager", manager);
-		return "managerprofle";
+		return "managerprofile";
 	}
 	
 	 @RequestMapping(value = "allmanagers", method = RequestMethod.GET)
@@ -67,7 +67,7 @@ public class ManagerController {
 		 if(manager!=null)
 		 {
 			 session.setAttribute("manager", manager);
-		     return "managerprofle";
+		     return "managerprofile";
 		 }
 		 else
 			 return "error";

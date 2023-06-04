@@ -27,4 +27,10 @@ public class ComplaintService {
 		return complaintDao.allComplaints();
 	}
 
+	public void editComplaint(int uid, int eid) 
+	{
+		 complaintDao.editComplaint(uid,eid);
+		
+	}
+
 }
