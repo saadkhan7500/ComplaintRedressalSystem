@@ -77,4 +77,12 @@ public class ComplaintController {
 		 model.addAttribute("size", complaints.size());
 		 return "allcomplaints";
 	 }
+	 
+	 @RequestMapping(value = "assignedcomplaint" , method=RequestMethod.GET)
+	 public String assignedComplaint(@RequestParam("id")int id,Model model)
+	 {
+		 List<Complaint> complaints = complaintService.assignedComplaint(id) ;
+		 model.addAttribute("complaints", complaints);
+		 return "engineerassignedcomplaint";
+	 }
 }

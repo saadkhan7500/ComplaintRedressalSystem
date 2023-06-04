@@ -33,4 +33,9 @@ public class ComplaintService {
 		
 	}
 
+	public List<Complaint> assignedComplaint(int id) {
+		
+		return complaintDao.assignedComplaint(id);
+	}
+
 }

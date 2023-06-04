@@ -50,4 +50,19 @@ public class ComplaintDao {
 		}
 
 	}
+
+	public List<Complaint> getComplaintsByEid(int eid) {
+		String hql = "FROM Complaint c WHERE c.eid = :eid";
+	    Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+	    Query<Complaint> query = session.createQuery(hql, Complaint.class);
+	    query.setParameter("eid", eid);
+	    return query.getResultList();
+	}
+	
+	@Transactional
+	public List<Complaint> assignedComplaint(int eid) {
+
+		List<Complaint> complaints = getComplaintsByEid(eid);
+		return complaints;
+	}
 }
