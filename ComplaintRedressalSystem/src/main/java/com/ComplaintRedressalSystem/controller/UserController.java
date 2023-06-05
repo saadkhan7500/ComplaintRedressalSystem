@@ -65,8 +65,6 @@ public class UserController {
 	{
 		userService.addUser(user);
 		session.setAttribute("user", user);
-		User u=(User)session.getAttribute("user");
-		System.out.println("inside addUser Handler "+u);
 		return "userprofile";
 	}
 	

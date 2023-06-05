@@ -53,6 +53,7 @@
 
 <%
   String id=request.getParameter("id");
+  System.out.println(id);
 %>
 
 <div class="card" style="margin-top:20px;">

@@ -152,7 +152,7 @@ section:after {
 				<th>Status</th>
 				<th>Action</th>
 			</tr>
-			<c:forEach var="complaint" items="${complaints}">
+			<c:forEach var="complaint" items="${sessionScope.complaints}">
 				<tr>
 					<td>${complaint.id}</td>
 					<td>${complaint.uid}</td>
@@ -161,8 +161,11 @@ section:after {
 					<td>${complaint.eid}</td>
 					<td>${complaint.userfeedback}</td>
 					<td>${complaint.status}</td>
-					<td><a href="#"><button class="button button1"><i class="fa fa-pencil" style="font-size:20px;"></i></button></a></td>
-
+					<td><a href="solvedcomplaint?id=${complaint.id}&uid=${complaint.uid}&eid=${complaint.eid}">
+							<button class="button button1"><i class="fa fa-pencil" style="font-size:20px;"></i>
+							</button>
+						</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</table>

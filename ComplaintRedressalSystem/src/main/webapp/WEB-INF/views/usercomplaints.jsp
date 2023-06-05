@@ -97,6 +97,25 @@ section:after {
   cursor: pointer;
   border-radius: 5px;
 }
+
+
+  .feedback-form{
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .form-row {
+    display: flex;
+    align-items: center;
+    margin-right: 10px; /* Adjust as needed */
+  }
+
+  .form-row input[type="text"] {
+    margin-right: 10px; /* Adjust as needed */
+  }
+  .green-button {
+    background-color: green;
+    color: white;
+  }
 </style>
 </head>
 <body>
@@ -141,6 +160,7 @@ section:after {
   <article>
     <h2>All Complaints</h2>
     <br>
+    <c:set var="usercomplaint" value=""/>
       <div class="w3-container">
           <table class="w3-table w3-bordered">
             <tr style="color:#FE9800;">
@@ -149,25 +169,36 @@ section:after {
               <th>Description</th>
               <th>Engineer ID</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Feedback</th>
             </tr>
 			
 			<c:forEach var="usercomplaint" items="${usercomplaints}">
 			<tr>	
-			<td>${usercomplaint.id}</td>
-			<td>${usercomplaint.title}</td>
-			<td>${usercomplaint.description}</td>
-			<td>${usercomplaint.eid}</td>
-			<td>${usercomplaint.status}</td>
-			<td><a href="delete.jsp?id="><button class="button button2"><i class="fa fa-trash" style="font-size:20px;"></i></button></a></td>
-			</tr>
+				<td>${usercomplaint.id}</td>
+				<td>${usercomplaint.title}</td>
+				<td>${usercomplaint.description}</td>
+				<td>${usercomplaint.eid}</td>
+				<td>${usercomplaint.status}</td>
+				<td><c:if test="${usercomplaint.status eq 'acknowledge'}">
+				   <form class="feedback-form" action="completecomplaint" method="post">
+				     <div class="form-row">
+				      <input type="hidden" name="id" value="${usercomplaint.id}">
+				      <input type="hidden" name="uid" value="${user.id}">
+				      <input type="hidden" name="eid" value="${usercomplaint.eid}">
+				      <input type="hidden" name="status" value="${usercomplaint.status}">
+				      <input type="text" name="feedback">
+				      <input type="submit" value="Submit" class="green-button">
+				     </div>
+    			   </form>
+	              
+	            </c:if>
+	            </td>
+            </tr>
 			</c:forEach>
-          
-            
           </table>
         </div>
+         
   </article>
 </section>
-
 </body>
 </html>

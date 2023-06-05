@@ -65,4 +65,46 @@ public class ComplaintDao {
 		List<Complaint> complaints = getComplaintsByEid(eid);
 		return complaints;
 	}
+	
+	
+	public int updateCompaintStatus(int id, int uid, int eid) {
+		
+		String newValue="acknowledge";
+		String hql = "UPDATE Complaint SET status = :newValue WHERE id = :id AND uid = :uid AND eid = :eid";
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery(hql);
+		query.setParameter("newValue", newValue);
+		query.setParameter("id", id);
+		query.setParameter("uid", uid);
+		query.setParameter("eid", eid);
+		return query.executeUpdate();
+	}
+
+	@Transactional
+	public void solvedComplaint(int id, int uid, int eid) {
+		int result=updateCompaintStatus(id,uid,eid);
+		System.out.println(result);
+		
+	}
+	public int updateFeedback(int id , int uid, int eid, String feedback) {
+		
+        String status="complete";
+		String hql = "UPDATE Complaint SET userfeedback = :feedback , status = :status WHERE id = :id AND uid = :uid AND eid = :eid";
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery(hql);
+		query.setParameter("id", id);
+		query.setParameter("feedback", feedback);
+		query.setParameter("status", status);
+		query.setParameter("uid", uid);
+		query.setParameter("eid", eid);
+		return query.executeUpdate();
+	}
+	
+	
+	@Transactional
+	public void completeComplaint(int id,int uid,int eid, String feedback)
+	{
+		int result = updateFeedback(id,uid, eid,feedback);
+		System.out.println(result);
+	}
 }

@@ -113,6 +113,7 @@ section:after {
 	</div>
 
 	<section> <nav>
+	<c:set var="engineer" value="${sessionScope.engineer}" />
 	<center><h2>Engineer</h2></center>
 	<center>
 		<i class="fa fa-user-circle-o"

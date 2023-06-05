@@ -2,6 +2,8 @@ package com.ComplaintRedressalSystem.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,7 +54,7 @@ public class EngineerController {
 	 @RequestMapping(value = "checkengineerlogin" , method=RequestMethod.POST)
 	 public String checkEngineerLogin(@RequestParam("email")String email, 
 			                          @RequestParam("password")String password,
-			                          Model model)
+			                          HttpSession session)
 	 {
 		 List<Engineer> engineers=engineerService.allEngineers();
 		 Engineer engineer=engineers.stream()
@@ -61,7 +63,7 @@ public class EngineerController {
 				           .orElse(null);
 		 if(engineer!=null)
 		 {
-		 model.addAttribute("engineer", engineer);
+		 session.setAttribute("engineer", engineer);;
 		 return "engineerprofile";
 		 }
 		 else

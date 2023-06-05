@@ -104,6 +104,7 @@ section:after {
 </style>
 </head>
 <body>
+<c:set var="user" value="${sessionScope.user}" />
 	<div class="navbar">
 		<a href="index"><i class="fa fa-fw fa-home"></i> Home</a> <a
 			href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a> <a
@@ -111,7 +112,7 @@ section:after {
 		<a href="logout" style="float: right;"><i
 			class="fa fa-sign-out"></i>Logout</a>
 	</div>
-  <c:set var="user" value="${sessionScope.user}" />
+  
 	<section> <nav>
 	<center><h2>User</h2></center>
 	<center>

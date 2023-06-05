@@ -3,6 +3,8 @@ package com.ComplaintRedressalSystem.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import com.ComplaintRedressalSystem.dao.ComplaintDao;
 import com.ComplaintRedressalSystem.model.Complaint;
 import com.ComplaintRedressalSystem.model.Engineer;
 import com.ComplaintRedressalSystem.model.Manager;
+import com.ComplaintRedressalSystem.model.User;
 import com.ComplaintRedressalSystem.service.ComplaintService;
 import com.ComplaintRedressalSystem.service.EngineerService;
 import com.ComplaintRedressalSystem.service.ManagerService;
@@ -79,10 +82,38 @@ public class ComplaintController {
 	 }
 	 
 	 @RequestMapping(value = "assignedcomplaint" , method=RequestMethod.GET)
-	 public String assignedComplaint(@RequestParam("id")int id,Model model)
+	 public String assignedComplaint(@RequestParam("id")int id,HttpSession session)
 	 {
 		 List<Complaint> complaints = complaintService.assignedComplaint(id) ;
-		 model.addAttribute("complaints", complaints);
+		 session.setAttribute("complaints", complaints);
 		 return "engineerassignedcomplaint";
 	 }
+	 
+	 @RequestMapping(value = "solvedcomplaint", method = RequestMethod.GET)
+	 public String solvedComplaint(@RequestParam("id")int id,
+			                       @RequestParam("uid")int uid,
+			                       @RequestParam("eid")int eid,
+			                       Model model)
+	 {
+		 complaintService.solvedComplaint(id,uid,eid);
+		 return "engineerassignedcomplaint";
+		 
+	 }
+	 
+	 @RequestMapping(value = "completecomplaint" , method =  RequestMethod.POST)
+	 public String completeComplaint(@RequestParam("id")int id,
+			                         @RequestParam("uid")int uid,
+			                         @RequestParam("eid")int eid,
+			                         @RequestParam("feedback")String feedback,
+			                         HttpSession session)
+	 {
+		 System.out.println(id);
+		 System.out.println(uid);
+		 System.out.println(eid);
+		 System.out.println(feedback);
+		 complaintService.completeComplaint(id,uid,eid,feedback);
+		 return "userprofile";
+	 }
+	 
+	 
 }
